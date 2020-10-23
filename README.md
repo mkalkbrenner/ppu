@@ -1,2 +1,1 @@
-# ppu
-Pinball Power-Ups
+# Pinball Power-Ups
