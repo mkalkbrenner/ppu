@@ -10,6 +10,11 @@ EffectsController effectsController("PPUC-Teensy-0.1.0");
 void setup() {
     effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
     effectsController.eventDispatcher()->addListener(effectsController.crossLinkDebugger());
+
+    // Test UV lights
+    effectsController.uv()->fadeIn(1000);
+    delay(2000);
+    effectsController.uv()->fadeOut(1000);
 }
 
 void loop() {
