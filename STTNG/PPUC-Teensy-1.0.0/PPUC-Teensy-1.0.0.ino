@@ -1,16 +1,17 @@
 // Markus Kalkbrenner 2020
 // Note to self: Play more pinball!
 
-#include <PPUCK.h>
+#include <EffectsController.h>
+// TaskScheduler needs to be included here, see https://github.com/arkhipenko/TaskScheduler/issues/51
+#include <TaskScheduler.h>
 
-PPUCK ppuck("PPUC-Teensy-1.0.0");
-CrossLinkDebugger crossLinkDebugger();
+EffectsController effectsController("PPUC-Teensy-0.1.0");
 
 void setup() {
-    ppuck.eventDispatcher()->setCrossLinkSerial(Serial8);
-    ppuck.eventDispatcher()->addListener(crossLinkDebugger, EVENT_SOURCE_ANY);
+    effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
+    effectsController.eventDispatcher()->addListener(effectsController.crossLinkDebugger());
 }
 
 void loop() {
-    ppuck.eventDispatcher()->update();
+    effectsController.eventDispatcher()->update();
 }

@@ -1,33 +1,33 @@
 // Markus Kalkbrenner 2020
 // Note to self: Play more pinball!
 
-#include <PPUCK.h>
+#include <InputController.h>
 
-PPUCK ppuck("PPUC-Arduino-1.0.0");
+InputController inputController("PPUC-Arduino-0.1.0");
 
 void setup() {
-    ppuck.pupComLink()->setSerial(Serial);
-    ppuck.pin2Dmd()->setSerial(Serial1);
-    //ppuck.tiltAudio()->setSerial(Serial2);
+    inputController.pupComLink()->setSerial(Serial);
+    inputController.pin2Dmd()->setSerial(Serial1);
+    //inputController.tiltAudio()->setSerial(Serial2);
 
-    ppuck.switchMatrix()->registerFieldAsEvent(3, 1, 31); // Borg Lock
-    ppuck.switchMatrix()->registerFieldAsEvent(6, 8, 68); // Shooter
-    
-    ppuck.lightMatrix()->registerAllFieldsAsEvent("WPC");
+    inputController.switchMatrix()->registerFieldAsEvent(3, 1, 31); // Borg Lock
+    inputController.switchMatrix()->registerFieldAsEvent(6, 8, 68); // Shooter
 
-    ppuck.eventDispatcher()->setCrossLinkSerial(Serial3);
-    ppuck.eventDispatcher()->addListener(ppuck.pupComLink(), EVENT_SOURCE_ANY);
+    inputController.lightMatrix()->registerAllFieldsAsEvent("WPC");
 
-    ppuck.switchMatrix()->start();
-    ppuck.lightMatrix()->start();
+    inputController.eventDispatcher()->setCrossLinkSerial(Serial3);
+    inputController.eventDispatcher()->addListener(inputController.pupComLink(), EVENT_SOURCE_ANY);
+
+    inputController.switchMatrix()->start();
+    inputController.lightMatrix()->start();
 }
 
 void loop() {
     // read data
-    ppuck.pin2Dmd()->update();
-    ppuck.switchMatrix()->update();
-    ppuck.lightMatrix()->update();
+    inputController.pin2Dmd()->update();
+    inputController.switchMatrix()->update();
+    inputController.lightMatrix()->update();
 
     // handle data
-    ppuck.eventDispatcher()->update();
+    inputController.eventDispatcher()->update();
 }
