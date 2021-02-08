@@ -1,9 +1,9 @@
 // Markus Kalkbrenner 2020
 // Note to self: Play more pinball!
 
-#include <InputController.h>
+#include <PPUCInputController.h>
 
-InputController inputController("PPUC-Arduino-0.1.0");
+PPUCInputController inputController("ArduinoMega");
 
 void setup() {
     inputController.pupComLink()->setSerial(Serial);
