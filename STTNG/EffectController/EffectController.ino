@@ -1,20 +1,24 @@
 // Markus Kalkbrenner 2020
 // Note to self: Play more pinball!
 
-#include <EffectsController.h>
-// TaskScheduler needs to be included here, see https://github.com/arkhipenko/TaskScheduler/issues/51
-#include <TaskScheduler.h>
+#include <PPUCEffectsController.h>
+#include <PPUCEvent.h>
+#include <PPUCNullEffect.h>
 
-PPUCEffectsController effectsController("Teensy4.3");
+PPUCEffectsController effectsController("Teensy4.1");
 
 void setup() {
-    effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
+    effectsController.eventDispatcher()->setCrossLinkSerial(Serial1);
     effectsController.eventDispatcher()->addListener(effectsController.crossLinkDebugger());
 
-    // Test UV lights
-    effectsController.uv()->fadeIn(1000);
-    delay(2000);
-    effectsController.uv()->fadeOut(1000);
+    effectsController.addEffect(
+        new PPUCNullEffect(),
+        effectsController.nullDevice(),
+        new PPUCEvent(1, 1),
+        1,
+        0,
+        0
+    );
 }
 
 void loop() {
