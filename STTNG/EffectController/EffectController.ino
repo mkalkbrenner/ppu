@@ -8,7 +8,7 @@
 PPUCEffectsController effectsController("Teensy4.1");
 
 void setup() {
-    effectsController.eventDispatcher()->setCrossLinkSerial(Serial1);
+    effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
     effectsController.eventDispatcher()->addListener(effectsController.crossLinkDebugger());
 
     effectsController.addEffect(
