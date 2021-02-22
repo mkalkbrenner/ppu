@@ -27,6 +27,7 @@ void loop() {
     inputController.pin2Dmd()->update();
     inputController.switchMatrix()->update();
     inputController.lightMatrix()->update();
+    inputController.testButtons()->update();
 
     // handle data
     inputController.eventDispatcher()->update();

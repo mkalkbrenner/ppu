@@ -3,6 +3,7 @@
 
 #include <PPUCEffectsController.h>
 #include <PPUCEvent.h>
+#include <PPUCLedBlinkEffect.h>
 #include <PPUCNullEffect.h>
 
 PPUCEffectsController effectsController("Teensy4.1");
@@ -19,6 +20,20 @@ void setup() {
         0,
         0
     );
+
+    effectsController.addEffect(
+         new PPUCLedBlinkEffect(),
+         effectsController.ledBuiltInDevice(),
+         new PPUCEvent(EVENT_SOURCE_SWITCH, 203),
+         1,
+         0,
+         0
+    );
+
+
+    Serial.begin(9600); // USB is always 12 Mbit/sec
+    Serial.println("hello");
+    digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void loop() {
