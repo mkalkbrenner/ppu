@@ -5,12 +5,12 @@
 #include <PPUCEvent.h>
 #include <PPUCLedBlinkEffect.h>
 #include <PPUCNullEffect.h>
+#include <PPUCCrossLinkDebugger.h>
 
 PPUCEffectsController effectsController("Teensy4.1");
 
 void setup() {
     effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
-    effectsController.eventDispatcher()->addListener(effectsController.crossLinkDebugger());
 
     effectsController.addEffect(
         new PPUCNullEffect(),
@@ -33,6 +33,7 @@ void setup() {
 
     Serial.begin(9600); // USB is always 12 Mbit/sec
     Serial.println("hello");
+    effectsController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger(), EVENT_SOURCE_ANY);
     digitalWrite(LED_BUILTIN, HIGH);
 }
 

@@ -2,6 +2,7 @@
 // Note to self: Play more pinball!
 
 #include <PPUCInputController.h>
+#include <PPUCCrossLinkDebugger.h>
 
 PPUCInputController inputController("ArduinoMega");
 
@@ -20,6 +21,8 @@ void setup() {
 
     inputController.switchMatrix()->start();
     inputController.lightMatrix()->start();
+
+    inputController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger(), EVENT_SOURCE_ANY);
 }
 
 void loop() {
