@@ -13,23 +13,23 @@ void setup() {
     effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
 
     effectsController.addEffect(
-        new PPUCNullEffect(),
-        effectsController.nullDevice(),
-        new PPUCEvent(1, 1),
-        1,
-        0,
-        0
-    );
-
-    effectsController.addEffect(
          new PPUCLedBlinkEffect(),
          effectsController.ledBuiltInDevice(),
          new PPUCEvent(EVENT_SOURCE_SWITCH, 203),
-         1,
-         0,
-         0
+         1, // priority
+         5, // repeat
+         0  // mode
     );
 
+
+    effectsController.addEffect(
+         new PPUCNullEffect(),
+         effectsController.ledBuiltInDevice(),
+         new PPUCEvent(EVENT_SOURCE_SWITCH, 204),
+         2, // priority
+         0, // repeat
+         0  // mode
+    );
 
     Serial.begin(9600); // USB is always 12 Mbit/sec
     effectsController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger());
