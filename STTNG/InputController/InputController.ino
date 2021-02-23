@@ -22,7 +22,7 @@ void setup() {
     inputController.switchMatrix()->start();
     inputController.lightMatrix()->start();
 
-    inputController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger(), EVENT_SOURCE_ANY);
+    inputController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger());
 }
 
 void loop() {

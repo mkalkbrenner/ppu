@@ -32,11 +32,9 @@ void setup() {
 
 
     Serial.begin(9600); // USB is always 12 Mbit/sec
-    Serial.println("hello");
-    effectsController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger(), EVENT_SOURCE_ANY);
-    digitalWrite(LED_BUILTIN, HIGH);
+    effectsController.eventDispatcher()->addListener(new PPUCCrossLinkDebugger());
 }
 
 void loop() {
-    effectsController.eventDispatcher()->update();
+    effectsController.update();
 }
