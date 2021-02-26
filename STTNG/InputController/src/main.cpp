@@ -1,6 +1,7 @@
 // Markus Kalkbrenner 2020
 // Note to self: Play more pinball!
 
+#include <Arduino.h>
 #include <PPUCInputController.h>
 #include <PPUCCrossLinkDebugger.h>
 
