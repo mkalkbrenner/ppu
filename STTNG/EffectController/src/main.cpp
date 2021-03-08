@@ -19,7 +19,7 @@ void setup() {
     effectsController.eventDispatcher()->setCrossLinkSerial(Serial8);
 
     // There's one WS2812FXDevice ready to use for each LED port. Using createWS2812FXDevice() you can define additional
-    // "virtual" WS2812FXDevice on a LED port to run independent effects on segments of the LED chain atteched to that
+    // "virtual" WS2812FXDevice on a LED port to run independent effects on segments of the LED chain attached to that
     // port.
     effectsController.createWS2812FXDevice(
             1, // LED port
@@ -28,7 +28,6 @@ void setup() {
             0, // number of first LED in chain (counting starts with 0)
             0  // number of last LED in chain (counting starts with 0)
     );
-
 
     // Register effects
     effectsController.addEffect(
@@ -50,7 +49,7 @@ void setup() {
     );
 
     effectsController.addEffect(
-         new PPUCWS2812FXRainbowCycle(),
+         new PPUCWS2812FXEffect(FX_MODE_BLINK, RED, 500, NO_OPTIONS),
          effectsController.ws2812FXDevice(/* port */ 1, /* device number */ 0),
          new PPUCEvent(EVENT_SOURCE_EFFECT, 1, 255), // controller start event
          1, // priority
